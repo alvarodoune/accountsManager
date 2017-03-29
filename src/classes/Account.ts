@@ -1,9 +1,11 @@
 export class Account {
-      public title: String;
-      public icon: String;
+      public title: string;
+      public name: string;
+      public icon: string;
 
-      constructor(title: String, icon: String) {
+      constructor(title: string = "", name: string = "", icon: string = "") {
             this.title = title;
+            this.name = name;
             this.icon = icon;
       }
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {AccountsProvider} from "../../providers/accountsProvider";
 import {Account} from "../../classes/Account";
+//import {TranslateService} from "../../providers/translate-service";
 
 @Component({
   selector: 'page-account',
@@ -15,7 +16,7 @@ export class AccountPage {
     this.accounts = account.getAccounts("");
   }
 
-  private selectAccount(account: Account) {
+  protected selectAccount(account: Account) {
     console.log(account.title);
   }
 }

@@ -1,17 +1,20 @@
 <ion-header>
       <ion-navbar>
             <ion-title>
-                  My Accounts
+                  {{"accountPage.title" | translate}}
             </ion-title>
       </ion-navbar>
 </ion-header>
 
 <ion-content>
       <ion-list>
-            <ion-list-header>My Accounts</ion-list-header>
+            <ion-list-header>{{"accountPage.title" | translate}}</ion-list-header>
             <button ion-item *ngFor="let account of accounts" (click)="selectAccount(account)">
-                  <ion-icon name="{{account.icon}}" item-left></ion-icon>
-                  {{ account.title }}
+                  <ion-thumbnail item-left>
+                        <img src="http://lorempixel.com{{account.icon}}">
+                  </ion-thumbnail>
+                  <h2>{{ account.name }}</h2>
+                  <p>{{ account.title }}</p>
             </button>
       </ion-list>
 </ion-content>
