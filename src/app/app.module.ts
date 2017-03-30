@@ -3,6 +3,7 @@ import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
 import {MyApp} from './app.component';
 import {AboutPage} from '../pages/about/about';
 import {AccountPage} from '../pages/account/accountPage';
+import {AccountDetailPage} from '../pages/account-detail-page/account-detail-page';
 import {HomePage} from '../pages/home/home';
 import {TabsPage} from '../pages/tabs/tabs';
 import {TranslatePipe} from "../pipes/translationPipe";
@@ -15,6 +16,7 @@ import {TRANSLATION_PROVIDERS} from "../providers/translations";
             MyApp,
             AboutPage,
             AccountPage,
+            AccountDetailPage,
             HomePage,
             TabsPage
       ],
@@ -26,6 +28,7 @@ import {TRANSLATION_PROVIDERS} from "../providers/translations";
             MyApp,
             AboutPage,
             AccountPage,
+            AccountDetailPage,
             HomePage,
             TabsPage
       ],
