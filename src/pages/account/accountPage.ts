@@ -1,8 +1,9 @@
-import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
-import {AccountsProvider} from "../../providers/accountsProvider";
-import {Account} from "../../classes/Account";
-import {AccountDetailPage} from "../account-detail-page/account-detail-page";
+import { Component } from '@angular/core';
+import { NavController, ModalController } from 'ionic-angular';
+import { AccountsProvider } from "../../providers/accountsProvider";
+import { Account } from "../../classes/Account";
+import { AccountDetailPage } from "../account-detail-page/account-detail-page";
+import {AccountModalPage} from "../account-modal/account-modal";
 //import {TranslateService} from "../../providers/translate-service";
 
 @Component({
@@ -11,14 +12,35 @@ import {AccountDetailPage} from "../account-detail-page/account-detail-page";
       providers: [AccountsProvider]
 })
 export class AccountPage {
-      protected accounts: Account;
+      protected accounts: Account[];
 
-      constructor(public navCtrl: NavController, protected account: AccountsProvider) {
-            this.accounts = account.getAccounts("");
+      constructor(protected navCtrl: NavController, public modalCtrl: ModalController, protected accountProvider: AccountsProvider) {
+            this.accounts = accountProvider.getAccounts("");
       }
 
       protected selectAccount(account: Account) {
             console.log(account.title);
-            this.navCtrl.push(AccountDetailPage, {account: account});
+            this.navCtrl.push(AccountDetailPage, { account: account });
+      }
+
+      protected openModal(account: Account) {
+            console.log(account.title);
+            let modal = this.modalCtrl.create(AccountModalPage, { "account": account });
+            modal.present();
+      }
+
+      protected searchAccount(ev) {
+            // Reset items back to all of the items
+            this.accounts = this.accountProvider.getAccounts("");
+
+            // set val to the value of the ev target
+            var val = ev.target.value;
+
+            // if the value is an empty string don't filter the items
+            if (val && val.trim() != '') {
+                  this.accounts = this.accounts.filter((item) => {
+                        return (item.name.toLowerCase()).indexOf(val.toLowerCase()) > -1 || (item.title.toLowerCase()).indexOf(val.toLowerCase()) > -1;
+                  })
+            }
       }
 }

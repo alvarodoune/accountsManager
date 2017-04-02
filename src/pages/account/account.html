@@ -7,9 +7,9 @@
 </ion-header>
 
 <ion-content>
+      <ion-searchbar (ionInput)="searchAccount($event)"></ion-searchbar>
       <ion-list>
             <ion-list-header>{{"accountPage.title" | translate}}</ion-list-header>
-
             <ion-item-sliding *ngFor="let account of accounts">
                   <button ion-item (click)="selectAccount(account)">
                         <ion-thumbnail item-left>
@@ -18,20 +18,14 @@
                         <h2>{{ account.name }}</h2>
                         <p>{{ account.title }}</p>
                   </button>
-                  <ion-item-options side="left">
-                        <button ion-button color="primary">
-                              <ion-icon name="text"></ion-icon>
-                              Text
-                        </button>
-                        <button ion-button color="secondary">
-                              <ion-icon name="call"></ion-icon>
-                              Call
-                        </button>
-                  </ion-item-options>
                   <ion-item-options side="right">
-                        <button ion-button color="primary">
-                              <ion-icon name="mail"></ion-icon>
-                              Email
+                        <button ion-button color="light" (click)="openModal(account)">
+                              <ion-icon name="create"></ion-icon>
+                              {{"common.actions.edit" | translate}}
+                        </button>
+                        <button ion-button color="danger">
+                              <ion-icon name="trash"></ion-icon>
+                              {{"common.actions.delete" | translate}}
                         </button>
                   </ion-item-options>
             </ion-item-sliding>

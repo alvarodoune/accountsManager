@@ -9,6 +9,7 @@ import {TabsPage} from '../pages/tabs/tabs';
 import {TranslatePipe} from "../pipes/translationPipe";
 import {TranslateService} from "../providers/translate-service";
 import {TRANSLATION_PROVIDERS} from "../providers/translations";
+import {AccountModalPage} from "../pages/account-modal/account-modal";
 
 @NgModule({
       declarations: [
@@ -17,6 +18,7 @@ import {TRANSLATION_PROVIDERS} from "../providers/translations";
             AboutPage,
             AccountPage,
             AccountDetailPage,
+            AccountModalPage,
             HomePage,
             TabsPage
       ],
@@ -29,6 +31,7 @@ import {TRANSLATION_PROVIDERS} from "../providers/translations";
             AboutPage,
             AccountPage,
             AccountDetailPage,
+            AccountModalPage,
             HomePage,
             TabsPage
       ],
