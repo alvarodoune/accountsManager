@@ -8,7 +8,7 @@
 
 
 <ion-content padding>
-  <div>
+  <div *ngIf="!!isSignUp">
     <h2>Please signUp</h2>
     <form #f="ngForm" (ngSubmit)="signUp(f)">
       <ion-list>
@@ -26,10 +26,12 @@
         </ion-item>
       </ion-list>
       <button ion-button block type="submit" [disabled]="!f.valid">Signup</button>
+      <button ion-button clear block (click)="changeToSignIn()" >or sign in</button>
     </form>
-
+  </div>
+  <div *ngIf="!isSignUp">
     <h2>Please signIn</h2>
-    <form #fl="ngForm" (ngSubmit)="signIn(f)">
+    <form #fl="ngForm" (ngSubmit)="signIn(fl)">
       <ion-list>
         <ion-item>
           <ion-label fixed>Mail</ion-label>
@@ -45,6 +47,7 @@
         </ion-item>
       </ion-list>
       <button ion-button block type="submit" [disabled]="!fl.valid">Login</button>
+      <button ion-button clear block (click)="changeToSignUp()" >or sign up</button>
     </form>
   </div>
 

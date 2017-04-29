@@ -9,6 +9,7 @@ import { AuthService } from './../../services/auth';
   templateUrl: 'login-page.html'
 })
 export class LoginPage {
+  private isSignUp: boolean = false;
 
   constructor(
     private navCtrl: NavController,
@@ -66,5 +67,13 @@ export class LoginPage {
         });
         alert.present();
       });
+  }
+
+  private changeToSignUp(): void {
+    this.isSignUp = true;
+  }
+  
+  private changeToSignIn(): void {
+    this.isSignUp = false;
   }
 }
