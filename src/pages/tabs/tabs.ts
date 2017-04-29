@@ -17,6 +17,7 @@ export class TabsPage {
   settings: any = SettingsPage;
 
   constructor() {
-
+      console.log("tabs page constructor");
+      
   }
 }

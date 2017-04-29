@@ -3,15 +3,15 @@ import { Platform, NavController } from 'ionic-angular';
 import firebase from 'firebase';
 import { StatusBar, Splashscreen } from 'ionic-native';
 import { TranslateService } from "../providers/translate-service";
-import { LoginPage } from './../pages/login-page/login-page';
 import { TabsPage } from '../pages/tabs/tabs';
+import { LoginPage } from './../pages/login-page/login-page';
 
 @Component({
       templateUrl: 'app.html'
 })
 export class MyApp {
-      rootPage: any = TabsPage;
-      loginPage = LoginPage;
+      rootPage: any = LoginPage;
+      //loginPage = LoginPage;
       isAuthenticated: boolean = false;
 
       @ViewChild('nav') nav: NavController;
@@ -31,12 +31,12 @@ export class MyApp {
                         this.isAuthenticated = true;
                         console.log("is auth");
                         this.rootPage = TabsPage;
-                        this.nav.setRoot(this.rootPage);
                   } else {
+                        console.log("not auth");
                         this.isAuthenticated = false;
                         this.rootPage = LoginPage;
-                        this.nav.setRoot(this.rootPage);
                   }
+                  this.nav.setRoot(this.rootPage);
             });
 
             platform.ready().then(() => {

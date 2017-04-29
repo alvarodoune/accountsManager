@@ -1,4 +1,3 @@
-import { LoginPage } from './../login-page/login-page';
 import { Component } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
