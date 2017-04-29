@@ -8,7 +8,7 @@ import {AccountModalPage} from "../account-modal/account-modal";
 
 @Component({
       selector: 'page-account',
-      templateUrl: 'account.html',
+      templateUrl: 'accountPage.html',
       providers: [AccountsProvider]
 })
 export class AccountPage {

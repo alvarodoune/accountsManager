@@ -10,6 +10,9 @@ import {TranslatePipe} from "../pipes/translationPipe";
 import {TranslateService} from "../providers/translate-service";
 import {TRANSLATION_PROVIDERS} from "../providers/translations";
 import {AccountModalPage} from "../pages/account-modal/account-modal";
+import {AuthService} from "../services/auth";
+import { LoginPage } from './../pages/login-page/login-page';
+import { SettingsPage } from './../pages/settings/settingsPage';
 
 @NgModule({
       declarations: [
@@ -19,6 +22,8 @@ import {AccountModalPage} from "../pages/account-modal/account-modal";
             AccountPage,
             AccountDetailPage,
             AccountModalPage,
+            SettingsPage,
+            LoginPage,
             HomePage,
             TabsPage
       ],
@@ -32,10 +37,18 @@ import {AccountModalPage} from "../pages/account-modal/account-modal";
             AccountPage,
             AccountDetailPage,
             AccountModalPage,
+            SettingsPage,
+            LoginPage,
             HomePage,
             TabsPage
       ],
-      providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, TranslateService, TRANSLATION_PROVIDERS]
+      providers: [{
+            provide: ErrorHandler, useClass: IonicErrorHandler
+      },
+            AuthService,
+            TranslateService,
+            TRANSLATION_PROVIDERS
+      ]
 })
 export class AppModule {
 }
