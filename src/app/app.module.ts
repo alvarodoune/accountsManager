@@ -11,8 +11,10 @@ import {TranslateService} from "../providers/translate-service";
 import {TRANSLATION_PROVIDERS} from "../providers/translations";
 import {AccountModalPage} from "../pages/account-modal/account-modal";
 import {AuthService} from "../services/auth";
-import { LoginPage } from './../pages/login-page/login-page';
-import { SettingsPage } from './../pages/settings/settingsPage';
+import {LoginPage} from './../pages/login-page/login-page';
+import {SettingsPage} from './../pages/settings/settingsPage';
+import {LoadingPage} from '../pages/loading/loading';
+import {SignUpPage} from "../pages/sign-up/sign-up";
 
 @NgModule({
       declarations: [
@@ -24,6 +26,8 @@ import { SettingsPage } from './../pages/settings/settingsPage';
             AccountModalPage,
             SettingsPage,
             LoginPage,
+            SignUpPage,
+            LoadingPage,
             HomePage,
             TabsPage
       ],
@@ -39,6 +43,8 @@ import { SettingsPage } from './../pages/settings/settingsPage';
             AccountModalPage,
             SettingsPage,
             LoginPage,
+            SignUpPage,
+            LoadingPage,
             HomePage,
             TabsPage
       ],

@@ -5,13 +5,13 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 import { TranslateService } from "../providers/translate-service";
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from './../pages/login-page/login-page';
+import { LoadingPage } from '../pages/loading/loading';
 
 @Component({
       templateUrl: 'app.html'
 })
 export class MyApp {
-      rootPage: any = LoginPage;
-      //loginPage = LoginPage;
+      rootPage: any = LoadingPage;
       isAuthenticated: boolean = false;
 
       @ViewChild('nav') nav: NavController;
@@ -26,18 +26,7 @@ export class MyApp {
                   // messagingSenderId: "39165643463"
             });
 
-            firebase.auth().onAuthStateChanged(user => {
-                  if (user) {
-                        this.isAuthenticated = true;
-                        console.log("is auth");
-                        this.rootPage = TabsPage;
-                  } else {
-                        console.log("not auth");
-                        this.isAuthenticated = false;
-                        this.rootPage = LoginPage;
-                  }
-                  this.nav.setRoot(this.rootPage);
-            });
+
 
             platform.ready().then(() => {
                   // Okay, so the platform is ready and our plugins are available.
@@ -46,6 +35,20 @@ export class MyApp {
                   Splashscreen.hide();
 
                   this._translate.use('es');
+                  //this.nav.setRoot(this.rootPage);
+                  firebase.auth().onAuthStateChanged(user => {
+                        if (user) {
+                              this.isAuthenticated = true;
+                              console.log("is auth");
+                              //this.rootPage = TabsPage;
+                              this.nav.setRoot(TabsPage);
+                        } else {
+                              console.log("not auth");
+                              this.isAuthenticated = false;
+                              //this.rootPage = LoginPage;
+                              this.nav.setRoot(LoginPage);
+                        }
+                  });
             });
       }
 }

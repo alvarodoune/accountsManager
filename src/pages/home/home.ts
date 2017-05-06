@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
-import { NgForm } from "@angular/forms";
 import { AuthService } from "../../services/auth";
+import {LoginPage} from "../login-page/login-page";
 
 @Component({
       selector: 'page-home',
@@ -18,6 +18,6 @@ export class HomePage {
       logOut(){
             console.log("log out");
             this.authService.logOut();
-            //this.navCtrl.setRoot(LoginPage);
+            this.navCtrl.setRoot(LoginPage);
       }
 }

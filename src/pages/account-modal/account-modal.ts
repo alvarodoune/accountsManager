@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams, Platform, ViewController} from 'ionic-angular';
-import { Account } from "../../classes/Account";
+import {NavParams, Platform, ViewController} from 'ionic-angular';
+import {Account} from "../../classes/Account";
 
 @Component({
       selector: 'page-account-modal',
