@@ -21,7 +21,7 @@ import {AuthService} from "../services/auth";
 import {LoginPage} from '../pages/login-page/login-page';
 import {SettingsPage} from '../pages/settings/settingsPage';
 import {LoadingPage} from '../pages/loading/loading';
-import {SignUpPage} from "../pages/sign-up/sign-up";
+import {SignUpModal} from "../pages/sign-up-modal/sign-up-modal";
 
 @NgModule({
       declarations: [
@@ -33,7 +33,7 @@ import {SignUpPage} from "../pages/sign-up/sign-up";
             AccountModalPage,
             SettingsPage,
             LoginPage,
-            SignUpPage,
+            SignUpModal,
             LoadingPage,
             HomePage,
             TabsPage
@@ -52,7 +52,7 @@ import {SignUpPage} from "../pages/sign-up/sign-up";
             AccountModalPage,
             SettingsPage,
             LoginPage,
-            SignUpPage,
+            SignUpModal,
             LoadingPage,
             HomePage,
             TabsPage

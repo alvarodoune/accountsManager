@@ -27,6 +27,7 @@
                   </ion-list>
                   <button ion-button block type="submit" [disabled]="!fl.valid">Login</button>
             </form>
+            <button ion-button clear block (click)="signUpClick()">SignUp</button>
       </div>
 
       <!--<ion-tab *ngIf="!isAuthenticated" [root]="login" tabTitle="Login" tabIcon="log-in"></ion-tab>
