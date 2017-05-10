@@ -5,6 +5,25 @@
 </ion-header>
 
 <ion-content padding>
-  <p>Home page</p>
-  <button ion-button block (click)="logOut()">LogOut</button>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-left block>
+          <ion-icon name="map"></ion-icon>
+          Locate me
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-left block color="secondary">
+          <ion-icon name="camera"></ion-icon>
+          Take photo
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button block (click)="logOut()">LogOut</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
