@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {NgForm} from "@angular/forms";
-import {NavController, NavParams, LoadingController, AlertController, ModalController} from 'ionic-angular';
+import {LoadingController, AlertController, ModalController} from 'ionic-angular';
 
-import {AuthService} from './../../services/auth';
+import {AuthService} from '../../services/auth';
 import {SignUpModal} from "../sign-up-modal/sign-up-modal";
 
 @Component({
@@ -12,7 +12,6 @@ import {SignUpModal} from "../sign-up-modal/sign-up-modal";
 export class LoginPage {
 
       constructor(private modalCtrl: ModalController,
-                  private navParams: NavParams,
                   private authService: AuthService,
                   private loadingController: LoadingController,
                   private alertController: AlertController) {

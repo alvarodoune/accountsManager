@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {NgForm} from "@angular/forms";
 
-import {AlertController, LoadingController, NavController, NavParams, ViewController} from 'ionic-angular';
+import {AlertController, LoadingController, NavParams, ViewController} from 'ionic-angular';
 import {AuthService} from "../../services/auth";
 
 /**
@@ -55,5 +55,9 @@ export class SignUpModal {
       dismiss() {
             this.viewCtrl.dismiss();
             this.email = "";
+      }
+
+      protected areEquals(form: NgForm): boolean {
+            return form && form.value.password == form.value.repeat;
       }
 }
