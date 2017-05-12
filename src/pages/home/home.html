@@ -1,29 +1,39 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
+      <ion-navbar>
+            <ion-title>Home</ion-title>
+      </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <button ion-button icon-left block>
-          <ion-icon name="map"></ion-icon>
-          Locate me
-        </button>
-      </ion-col>
-      <ion-col>
-        <button ion-button icon-left block color="secondary">
-          <ion-icon name="camera"></ion-icon>
-          Take photo
-        </button>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <button ion-button block (click)="logOut()">LogOut</button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+      <ion-grid>
+            <ion-row>
+                  <ion-col>
+                        <button ion-button block color="Secondary" (click)="navigateToEdition()">Register</button>
+                  </ion-col>
+            </ion-row>
+            <ion-row>
+                  <ion-col>
+                        <button ion-button icon-left block>
+                              <ion-icon name="map"></ion-icon>
+                              Locate me
+                        </button>
+                  </ion-col>
+                  <ion-col>
+                        <button ion-button icon-left block color="secondary" (click)="takePhoto()">
+                              <ion-icon name="camera"></ion-icon>
+                              Take photo
+                        </button>
+                  </ion-col>
+            </ion-row>
+            <ion-row *ngIf="imageURL">
+                  <ion-col>
+                        <img [src]="imageURL" alt="image">
+                  </ion-col>
+            </ion-row>
+            <ion-row>
+                  <ion-col>
+                        <button ion-button block clear (click)="logOut()">LogOut</button>
+                  </ion-col>
+            </ion-row>
+      </ion-grid>
 </ion-content>

@@ -22,6 +22,7 @@ import {LoginPage} from '../pages/login-page/login-page';
 import {SettingsPage} from '../pages/settings/settingsPage';
 import {LoadingPage} from '../pages/loading/loading';
 import {SignUpModal} from "../pages/sign-up-modal/sign-up-modal";
+import {Camera} from "@ionic-native/camera";
 
 @NgModule({
       declarations: [
@@ -60,8 +61,10 @@ import {SignUpModal} from "../pages/sign-up-modal/sign-up-modal";
       providers: [
             StatusBar,
             SplashScreen,
+            Camera,
             {
-                  provide: ErrorHandler, useClass: IonicErrorHandler
+                  provide: ErrorHandler,
+                  useClass: IonicErrorHandler
             },
             AuthService,
             TranslateService,
