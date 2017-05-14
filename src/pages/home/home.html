@@ -13,9 +13,9 @@
             </ion-row>
             <ion-row>
                   <ion-col>
-                        <button ion-button icon-left block>
+                        <button ion-button icon-left block (click)="selectPhoto()">
                               <ion-icon name="map"></ion-icon>
-                              Locate me
+                              Pic photo
                         </button>
                   </ion-col>
                   <ion-col>
@@ -25,6 +25,14 @@
                         </button>
                   </ion-col>
             </ion-row>
+            <ion-row>
+              <ion-col>
+                    <button ion-button icon-left block (click)="captureVideo()">
+                          <ion-icon name="camera"></ion-icon>
+                          Capture Video
+                    </button>
+              </ion-col>
+            </ion-row>
             <ion-row *ngIf="imageURL">
                   <ion-col>
                         <img [src]="imageURL" alt="image">
@@ -32,7 +40,7 @@
             </ion-row>
             <ion-row>
                   <ion-col>
-                        <button ion-button block clear (click)="logOut()">LogOut</button>
+                        <button ion-button block color="danger" (click)="showConfirm()">LogOut</button>
                   </ion-col>
             </ion-row>
       </ion-grid>
