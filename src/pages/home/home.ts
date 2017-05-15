@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 
 import { Camera } from "@ionic-native/camera";
 import { MediaCapture, MediaFile, CaptureError, CaptureVideoOptions } from "@ionic-native/media-capture";
-import { ImagePicker } from '@ionic-native/image-picker';
 
 import { AlertController, IonicPage, NavController } from 'ionic-angular';
 import { AuthService } from "../../services/auth";
@@ -15,14 +14,14 @@ import { LoginPage } from "../login-page/login-page";
 })
 export class HomePage {
       protected imageURL: string = "";
+      protected videoURL: string = "";
+      protected videoName: string = "";
 
       constructor(public navCtrl: NavController,
             private authService: AuthService,
             private camera: Camera,
             private alertCtrl: AlertController,
-            private mediaCapture: MediaCapture,
-            private imagePicker: ImagePicker) {
-
+            private mediaCapture: MediaCapture) {
       }
 
       showConfirm() {
@@ -58,18 +57,28 @@ export class HomePage {
       }
 
       protected captureVideo() {
+            this.videoName = "";
+            this.videoURL = "";
             let videoOptions: CaptureVideoOptions = { duration: 60 };
             this.mediaCapture.captureVideo(videoOptions).then(
-                  (data: MediaFile[]) => console.log(data),
+                  (data: MediaFile[]) => {
+                        console.log(data);
+                        this.videoName = data[0].name;
+                        this.videoURL = data[0].fullPath;
+                        // data.forEach((value: MediaFile, index: number) => {
+                        //       this.videoURL = data[index].fullPath;
+                        // });
+                  },
                   (err: CaptureError) => console.error(err)
             );
       }
 
       protected takePhoto() {
             this.camera.getPicture({
-                  allowEdit: true,
+                  //allowEdit: true,
                   saveToPhotoAlbum: true,
-                  //correctOrientation: true
+                  correctOrientation: true,
+                  cameraDirection: 1
             }).then(imageData => {
                   console.log(imageData);
                   this.imageURL = imageData;
@@ -79,12 +88,31 @@ export class HomePage {
                   });
       }
 
-      protected selectPhoto() {
-            this.imagePicker.getPictures({ maximumImagesCount: 2 }).then((results) => {
-                  for (var i = 0; i < results.length; i++) {
-                        console.log('Image URI: ' + results[i]);
-                        this.imageURL = results[0];
-                  }
-            }, (err) => { });
+      protected picVideo() {
+            this.videoName = "";
+            this.videoURL = "";
+            this.camera.getPicture({
+                  sourceType: 0,
+                  mediaType: 1
+            }).then(imageData => {
+                  console.log(imageData);
+                  this.videoURL = imageData;
+            })
+                  .catch((error: any) => {
+                        console.log(error);
+                  });
+      }
+
+      protected picPhoto() {
+            this.camera.getPicture({
+                  sourceType: 0,
+                  mediaType: 0
+            }).then(imageData => {
+                  console.log(imageData);
+                  this.imageURL = imageData;
+            })
+                  .catch((error: any) => {
+                        console.log(error);
+                  });
       }
 }

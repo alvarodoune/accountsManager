@@ -59,7 +59,7 @@
             "locator": "ios"
         }
     ],
-    "description": "accountsManager: An Ionic project",
+    "description": "Now you can manage all of your accounts and share it.",
     "cordova": {
         "plugins": {
             "cordova-plugin-console": {},

@@ -1,47 +1,62 @@
 <ion-header>
-      <ion-navbar>
-            <ion-title>Home</ion-title>
-      </ion-navbar>
+  <ion-navbar>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-      <ion-grid>
-            <ion-row>
-                  <ion-col>
-                        <button ion-button block color="Secondary" (click)="navigateToEdition()">Register</button>
-                  </ion-col>
-            </ion-row>
-            <ion-row>
-                  <ion-col>
-                        <button ion-button icon-left block (click)="selectPhoto()">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <button ion-button block color="Secondary" (click)="navigateToEdition()">Register</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-left block (click)="picPhoto()">
                               <ion-icon name="map"></ion-icon>
                               Pic photo
                         </button>
-                  </ion-col>
-                  <ion-col>
-                        <button ion-button icon-left block color="secondary" (click)="takePhoto()">
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-left block color="secondary" (click)="takePhoto()">
                               <ion-icon name="camera"></ion-icon>
                               Take photo
                         </button>
-                  </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col>
-                    <button ion-button icon-left block (click)="captureVideo()">
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-left block (click)="picVideo()">
+                          <ion-icon name="camera"></ion-icon>
+                          Pic Video
+                    </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-left block (click)="captureVideo()">
                           <ion-icon name="camera"></ion-icon>
                           Capture Video
                     </button>
-              </ion-col>
-            </ion-row>
-            <ion-row *ngIf="imageURL">
-                  <ion-col>
-                        <img [src]="imageURL" alt="image">
-                  </ion-col>
-            </ion-row>
-            <ion-row>
-                  <ion-col>
-                        <button ion-button block color="danger" (click)="showConfirm()">LogOut</button>
-                  </ion-col>
-            </ion-row>
-      </ion-grid>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="imageURL">
+      <ion-col>
+        <img [src]="imageURL" alt="image">
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="videoURL">
+      <ion-col>
+            <p>{{videoName}}</p>
+        <video width="100%" alt="videoalt" controls>
+          <source [src]="videoURL" type="video/mp4">
+          <source [src]="videoURL" type="video/ogg">
+        </video>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button block color="danger" (click)="showConfirm()">LogOut</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
