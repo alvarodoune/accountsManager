@@ -4,6 +4,9 @@ import {AccountsProvider} from "../../providers/accountsProvider";
 import {Account} from "../../classes/Account";
 import {AccountDetailPage} from "../account-detail-page/account-detail-page";
 import {AccountModalPage} from "../account-modal/account-modal";
+import * as firebase from "firebase/app";
+import AuthProvider = firebase.auth.AuthProvider;
+import {AuthService} from "../../services/auth";
 
 @Component({
       selector: 'page-account',
@@ -13,7 +16,9 @@ import {AccountModalPage} from "../account-modal/account-modal";
 export class AccountPage {
       protected accounts: Account[];
 
-      constructor(protected navCtrl: NavController, public modalCtrl: ModalController, protected accountProvider: AccountsProvider) {
+      constructor(protected navCtrl: NavController,
+                  public modalCtrl: ModalController,
+                  protected accountProvider: AccountsProvider) {
             this.accounts = accountProvider.getAccounts("");
       }
 

@@ -14,27 +14,54 @@
 
 
 <ion-content padding>
-      <div>
-            <h2>Please signUp</h2>
-            <form #f="ngForm" (ngSubmit)="signUp(f)">
-                  <ion-list>
-                        <ion-item>
-                              <ion-label fixed>Mail</ion-label>
-                              <ion-input type="email" ngModel name="email" required>
-                              </ion-input>
-                        </ion-item>
-                        <ion-item>
-                              <ion-label fixed>Password</ion-label>
-                              <ion-input type="password" ngModel name="password" required [minlength]="6">
-                              </ion-input>
-                        </ion-item>
-                        <ion-item>
-                              <ion-label fixed>Repeat</ion-label>
-                              <ion-input type="password" ngModel name="repeat" required [minlength]="6">
-                              </ion-input>
-                        </ion-item>
-                  </ion-list>
-                  <button ion-button block type="submit" [disabled]="!f.valid || !areEquals(f)">Signup</button>
-            </form>
-      </div>
+      <h2>Please signUp</h2>
+      <form #f="ngForm" (ngSubmit)="signUp(f)">
+            <ion-list>
+                  <ion-item>
+                        <ion-label>Name</ion-label>
+                        <ion-input type="text" ngModel name="name" required>
+                        </ion-input>
+                  </ion-item>
+                  <ion-item>
+                        <ion-label>Last Name</ion-label>
+                        <ion-input type="text" ngModel name="lastname" required>
+                        </ion-input>
+                  </ion-item>
+                  <ion-item>
+                        <ion-label>Document type</ion-label>
+                        <ion-select ngModel name="documentType">
+                              <ion-option value="ci">Cédula de identidad</ion-option>
+                              <ion-option value="dni">DNI</ion-option>
+                              <ion-option value="pp">Passport</ion-option>
+                        </ion-select>
+                  </ion-item>
+                  <ion-item>
+                        <ion-label>Document</ion-label>
+                        <ion-input type="text" ngModel name="document" required>
+                        </ion-input>
+                  </ion-item>
+                  <ion-item>
+                        <ion-label>Mail</ion-label>
+                        <ion-input type="email" ngModel name="email" required>
+                        </ion-input>
+                  </ion-item>
+                  <ion-item>
+                        <ion-label>Password</ion-label>
+                        <ion-input type="password" ngModel name="password" required [minlength]="6">
+                        </ion-input>
+                  </ion-item>
+                  <ion-item>
+                        <ion-label>Repeat</ion-label>
+                        <ion-input type="password" ngModel name="repeat" required [minlength]="6">
+                        </ion-input>
+                  </ion-item>
+                  <ion-item>
+                        <ion-label>Términos y condiciones</ion-label>
+                        <ion-toggle ngModel name="term" checked="false" required></ion-toggle>
+                  </ion-item>
+            </ion-list>
+            <button ion-button block type="submit" [disabled]="!f.valid || !areEquals(f) || !f.controls?.term?.value">
+                  Signup
+            </button>
+      </form>
 </ion-content>

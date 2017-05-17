@@ -3,6 +3,7 @@ import {NgForm} from "@angular/forms";
 
 import {AlertController, LoadingController, NavParams, ViewController} from 'ionic-angular';
 import {AuthService} from "../../services/auth";
+import {User} from "../../classes/User";
 
 /**
  * Generated class for the SignUpModal page.
@@ -31,13 +32,16 @@ export class SignUpModal {
 
       protected signUp(form: NgForm) {
             let loading = this.loadingController.create({
-                  content: "loading..."
+                  //content: "loading..."
             });
             loading.present();
             this.authService.signUp(form.value.email, form.value.password)
                 .then(
                     (data) => {
+                          console.log(data);
+                          let user = new User(data.uid, form.value.name, form.value.lastName, form.value.documentType, form.value.document, form.value.email, form.value.password, form.value.imageUrl = "/img/default.png");
                           loading.dismiss();
+                          this.registerUser(user);
                           this.viewCtrl.dismiss();
                     })
                 .catch(error => {
@@ -55,6 +59,13 @@ export class SignUpModal {
       dismiss() {
             this.viewCtrl.dismiss();
             this.email = "";
+      }
+
+      protected registerUser(user: User) {
+            this.authService.registerUser(user);
+            // register.on('value', function(snapshot) {
+            //       console.log(snapshot);
+            // });
       }
 
       protected areEquals(form: NgForm): boolean {

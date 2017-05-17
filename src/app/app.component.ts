@@ -25,11 +25,11 @@ export class MyApp {
       constructor(platform: Platform, private _translate: TranslateService, private statusBar: StatusBar, private splashScreen: SplashScreen) {
             firebase.initializeApp({
                   apiKey: "AIzaSyAqT4OnMlyNF7o8ugH1aC9-O7HLlCMR97g",
-                  authDomain: "accountsmanager-9fe12.firebaseapp.com"
-                  // databaseURL: "https://accountsmanager-9fe12.firebaseio.com",
-                  // projectId: "accountsmanager-9fe12",
-                  // storageBucket: "accountsmanager-9fe12.appspot.com",
-                  // messagingSenderId: "39165643463"
+                  authDomain: "accountsmanager-9fe12.firebaseapp.com",
+                  databaseURL: "https://accountsmanager-9fe12.firebaseio.com",
+                  projectId: "accountsmanager-9fe12",
+                  storageBucket: "accountsmanager-9fe12.appspot.com",
+                  messagingSenderId: "39165643463"
             });
 
 
