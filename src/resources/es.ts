@@ -5,6 +5,7 @@ export const LANG_ES_TRANS = {
             actions: {
                   delete: "Borrar",
                   edit: "Editar",
+                  save: "Guardar"
             }
       },
       accountPage: {

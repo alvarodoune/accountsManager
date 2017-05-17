@@ -33,6 +33,10 @@ export class AccountPage {
             modal.present();
       }
 
+      protected saveAllAccounts() {
+            this.accountProvider.saveAllAccounts();
+      }
+
       protected searchAccount(ev) {
             // Reset items back to all of the items
             this.accounts = this.accountProvider.getAccounts("");
