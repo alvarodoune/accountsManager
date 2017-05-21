@@ -44,8 +44,8 @@ export class AccountsProvider {
             });
       }
 
-      saveAllAccounts(toke: string) {
-            const uid = this.auth.getActiveUser().uid;
+      saveAllAccounts() {
+            const uid = this.auth.getActiveUser();
             this.http.put('https://accountsmanager-9fe12.firebaseio.com/' + uid + '/accounts-list.json', this.accounts);
       }
 
@@ -59,6 +59,4 @@ export class AccountsProvider {
             let result = info;
             return result;
       }
-
-
 }

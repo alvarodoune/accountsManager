@@ -29,6 +29,10 @@ export class AuthService {
             return firebase.auth().signInWithEmailAndPassword(email, password);
       }
 
+      getActiveUser(){
+            return "12345";
+      }
+
       logOut() {
             firebase.auth().signOut();
       }

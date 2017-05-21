@@ -62,7 +62,11 @@ export class SignUpModal {
       }
 
       protected registerUser(user: User) {
-            this.authService.registerUser(user);
+            this.authService.registerUser(user).then((data) => {
+                  console.log(data);
+            }).catch((error) => {
+                  console.error(error);
+            });
             // register.on('value', function(snapshot) {
             //       console.log(snapshot);
             // });

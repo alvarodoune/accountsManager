@@ -1,9 +1,19 @@
 <ion-header>
-      <ion-navbar>
+      <ion-toolbar>
+            <ion-buttons start>
+                  <button ion-button icon-only color="royal">
+                        <ion-icon name="search"></ion-icon>
+                  </button>
+            </ion-buttons>
             <ion-title>
                   {{"accountPage.title" | translate}}
             </ion-title>
-      </ion-navbar>
+            <ion-buttons end>
+                  <button ion-button icon-only color="royal" (click)="goToAddAccount()">
+                        <ion-icon name="add"></ion-icon>
+                  </button>
+            </ion-buttons>
+      </ion-toolbar>
 </ion-header>
 
 <ion-content>

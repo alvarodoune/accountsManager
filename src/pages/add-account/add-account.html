@@ -1,0 +1,33 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>AddAccount</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+      <form #fa="ngForm" (ngSubmit)="addAccount(fa)">
+            <ion-list>
+                  <ion-item>
+                        <ion-label>Title</ion-label>
+                        <ion-input type="text" ngModel name="title" required>
+                        </ion-input>
+                  </ion-item>
+                  <ion-item>
+                        <ion-label>Name</ion-label>
+                        <ion-input type="text" ngModel name="name" required [minlength]="6">
+                        </ion-input>
+                  </ion-item>
+                  <ion-item>
+                        Icon
+                        <button ion-button outline item-right icon-left (click)="picIcon()">
+                              <ion-icon name="attach"></ion-icon>
+                              Pick Icon
+                        </button>
+                  </ion-item>
+            </ion-list>
+            <button ion-button block type="submit" [disabled]="!fa.valid">Add</button>
+      </form>
+</ion-content>

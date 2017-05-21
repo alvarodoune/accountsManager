@@ -4,9 +4,6 @@ import {AccountsProvider} from "../../providers/accountsProvider";
 import {Account} from "../../classes/Account";
 import {AccountDetailPage} from "../account-detail-page/account-detail-page";
 import {AccountModalPage} from "../account-modal/account-modal";
-import * as firebase from "firebase/app";
-import AuthProvider = firebase.auth.AuthProvider;
-import {AuthService} from "../../services/auth";
 
 @Component({
       selector: 'page-account',
@@ -50,5 +47,9 @@ export class AccountPage {
                         return (item.name.toLowerCase()).indexOf(val.toLowerCase()) > -1 || (item.title.toLowerCase()).indexOf(val.toLowerCase()) > -1;
                   })
             }
+      }
+
+      goToAddAccount() {
+            this.navCtrl.push('AddAccount');
       }
 }

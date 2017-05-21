@@ -18,7 +18,10 @@ import { LoadingPage } from '../pages/loading/loading';
 })
 export class MyApp {
       rootPage: any = LoadingPage;
-      isAuthenticated: boolean = false;
+      userInformation = {
+            isAuthenticated: false,
+            uid: ""
+      }
 
       @ViewChild('nav') nav: NavController;
 
@@ -44,13 +47,14 @@ export class MyApp {
                   //this.nav.setRoot(this.rootPage);
                   firebase.auth().onAuthStateChanged(user => {
                         if (user) {
-                              this.isAuthenticated = true;
-                              console.log("is auth");
+                              this.userInformation.isAuthenticated = true;
+                              this.userInformation.uid = user
+                              console.log("is auth " + user);
                               //this.rootPage = TabsPage;
                               this.nav.setRoot(TabsPage);
                         } else {
                               console.log("not auth");
-                              this.isAuthenticated = false;
+                              this.userInformation.isAuthenticated = false;
                               //this.rootPage = LoginPage;
                               this.nav.setRoot(LoginPage);
                         }
