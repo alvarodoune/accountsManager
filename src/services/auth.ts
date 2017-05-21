@@ -2,6 +2,13 @@ import firebase from "firebase";
 import {User} from "../classes/User";
 
 export class AuthService {
+      userInformation = {
+            isAuthenticated: false,
+            uid: ""
+      }
+
+      uid: string;
+
       signUp(email: string, password: string) {
             return firebase.auth().createUserWithEmailAndPassword(email, password);
       }
@@ -29,8 +36,8 @@ export class AuthService {
             return firebase.auth().signInWithEmailAndPassword(email, password);
       }
 
-      getActiveUser(){
-            return "12345";
+      getActiveUserId(){
+            return this.uid;
       }
 
       logOut() {

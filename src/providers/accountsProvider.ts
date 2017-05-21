@@ -45,7 +45,7 @@ export class AccountsProvider {
       }
 
       saveAllAccounts() {
-            const uid = this.auth.getActiveUser();
+            const uid = this.auth.getActiveUserId();
             this.http.put('https://accountsmanager-9fe12.firebaseio.com/' + uid + '/accounts-list.json', this.accounts);
       }
 

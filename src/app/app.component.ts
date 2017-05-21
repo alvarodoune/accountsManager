@@ -1,4 +1,5 @@
 //region Angular-Ionic imports
+import { AuthService } from '../services/auth';
 import { Component, ViewChild } from '@angular/core';
 import { Platform, NavController } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -18,14 +19,16 @@ import { LoadingPage } from '../pages/loading/loading';
 })
 export class MyApp {
       rootPage: any = LoadingPage;
-      userInformation = {
-            isAuthenticated: false,
-            uid: ""
-      }
 
       @ViewChild('nav') nav: NavController;
 
-      constructor(platform: Platform, private _translate: TranslateService, private statusBar: StatusBar, private splashScreen: SplashScreen) {
+      constructor(
+            platform: Platform,
+            private _translate: TranslateService,
+            private statusBar: StatusBar,
+            private splashScreen: SplashScreen,
+            private authService: AuthService
+      ) {
             firebase.initializeApp({
                   apiKey: "AIzaSyAqT4OnMlyNF7o8ugH1aC9-O7HLlCMR97g",
                   authDomain: "accountsmanager-9fe12.firebaseapp.com",
@@ -47,14 +50,14 @@ export class MyApp {
                   //this.nav.setRoot(this.rootPage);
                   firebase.auth().onAuthStateChanged(user => {
                         if (user) {
-                              this.userInformation.isAuthenticated = true;
-                              this.userInformation.uid = user
+                              //this.authService.userInformation.isAuthenticated = true;
+                              this.authService.uid = user.uid;
                               console.log("is auth " + user);
                               //this.rootPage = TabsPage;
                               this.nav.setRoot(TabsPage);
                         } else {
                               console.log("not auth");
-                              this.userInformation.isAuthenticated = false;
+                              this.authService.uid = null;
                               //this.rootPage = LoginPage;
                               this.nav.setRoot(LoginPage);
                         }

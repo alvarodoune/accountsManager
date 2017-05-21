@@ -10,6 +10,7 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {Camera} from "@ionic-native/camera";
 import {MediaCapture} from "@ionic-native/media-capture";
+import {File} from '@ionic-native/file';
 //endregion
 
 import {MyApp} from './app.component';
@@ -64,6 +65,7 @@ import {SignUpModal} from "../pages/sign-up-modal/sign-up-modal";
             SplashScreen,
             Camera,
             MediaCapture,
+            File,
             {
                   provide: ErrorHandler,
                   useClass: IonicErrorHandler
