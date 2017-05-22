@@ -2,10 +2,14 @@ import { Component } from '@angular/core';
 
 import { Camera } from "@ionic-native/camera";
 import { MediaCapture, MediaFile, CaptureError, CaptureVideoOptions } from "@ionic-native/media-capture";
-
-import { AlertController, IonicPage, NavController } from 'ionic-angular';
+import { LoadingController, AlertController, IonicPage, NavController } from 'ionic-angular';
 import { AuthService } from "../../services/auth";
 import { LoginPage } from "../login-page/login-page";
+
+import 'whatwg-fetch';
+
+//region firebase imports
+import * as firebase from 'firebase';
 
 @IonicPage()
 @Component({
@@ -21,6 +25,7 @@ export class HomePage {
             private authService: AuthService,
             private camera: Camera,
             private alertCtrl: AlertController,
+            private loadingController: LoadingController,
             private mediaCapture: MediaCapture) {
       }
 
@@ -97,22 +102,55 @@ export class HomePage {
             }).then(imageData => {
                   console.log(imageData);
                   this.videoURL = imageData;
-            })
-                  .catch((error: any) => {
-                        console.log(error);
-                  });
+            }).catch((error: any) => {
+                  console.log(error);
+            });
       }
 
       protected picPhoto() {
+            let loading = this.loadingController.create({
+                        content: "loading..."
+            });
             this.camera.getPicture({
-                  sourceType: 0,
-                  mediaType: 0
-            }).then(imageData => {
-                  console.log(imageData);
-                  this.imageURL = imageData;
-            })
-                  .catch((error: any) => {
-                        console.log(error);
+                  quality: 75,
+                  sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+                  mediaType: this.camera.MediaType.PICTURE,
+                  destinationType: this.camera.DestinationType.FILE_URI,
+                  correctOrientation: true,
+                  targetWidth: 100,
+                  targetHeight: 100
+            }).then(imageUrl => {
+                  this.imageURL = imageUrl;
+                  loading.present();
+                  return this.makeFileIntoBlob(imageUrl);
+            }).then((imageBlob: Blob) => {
+                  var metadata = {
+                        contentType: 'image/jpeg'
+                  };
+
+                  let storageRef = firebase.storage().ref("icons/" + firebase.auth().currentUser.uid);
+
+                  let task = storageRef.put(imageBlob, metadata);
+
+                  task.on("state_changed", (snapshot) => {
+                        if (snapshot.bytesTransferred == snapshot.totalBytes) {
+                              console.log("COMPLETE file upload! ");
+                              loading.dismiss();
+                        }
                   });
+            }).catch((error: any) => {
+                  console.log("GET PICTURE ERROR: " + error);
+                  loading.dismiss();
+            });
+      }
+
+      makeFileIntoBlob(imagePath: string) {
+            return fetch(imagePath).then((response) => {
+                  return response.blob();
+            }).then((blob) => {
+                  return blob;
+            }).catch((error) => {
+                  console.error("Error convertion to blob: " + error);
+            });
       }
 }

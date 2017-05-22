@@ -38,8 +38,6 @@ export class MyApp {
                   messagingSenderId: "39165643463"
             });
 
-
-
             platform.ready().then(() => {
                   // Okay, so the platform is ready and our plugins are available.
                   // Here you can do any higher level native things you might need.
@@ -52,7 +50,7 @@ export class MyApp {
                         if (user) {
                               //this.authService.userInformation.isAuthenticated = true;
                               this.authService.uid = user.uid;
-                              console.log("is auth " + user);
+                              console.log("is auth " + user.uid);
                               //this.rootPage = TabsPage;
                               this.nav.setRoot(TabsPage);
                         } else {

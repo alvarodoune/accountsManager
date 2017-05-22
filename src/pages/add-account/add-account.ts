@@ -2,11 +2,7 @@ import { AuthService } from '../../services/auth';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Camera } from "@ionic-native/camera";
-import { File } from '@ionic-native/file';
-
-//region firebase imports
-import firebase from 'firebase';
-//endregion
+import 'whatwg-fetch';
 
 @IonicPage()
 @Component({
@@ -14,18 +10,14 @@ import firebase from 'firebase';
       templateUrl: 'add-account.html',
 })
 export class AddAccount {
-
-      iconURL: String;
-      // Get a reference to the storage service, which is used to create references in your storage bucket
-      storage = firebase.storage();
-      // Create a storage reference from our storage service
+      iconURL: string;
+      downloadUrl: string;
 
       constructor(
             private auth: AuthService,
             private navCtrl: NavController,
             private navParams: NavParams,
-            private camera: Camera,
-            private file: File) {
+            private camera: Camera) {
       }
 
       ionViewDidLoad() {
@@ -34,28 +26,19 @@ export class AddAccount {
 
       picIcon() {
             this.camera.getPicture({
+                  quality: 75,
                   sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-                  mediaType: this.camera.MediaType.ALLMEDIA,
-                  destinationType: this.camera.DestinationType.DATA_URL, //return Data.URL is base64
-                  targetHeight: 100,
+                  mediaType: this.camera.MediaType.PICTURE,
+                  destinationType: this.camera.DestinationType.FILE_URI,
+                  correctOrientation: true,
                   targetWidth: 100,
-                  correctOrientation: true
-            }).then(base64Image => {
-                  console.log(base64Image);
-                  this.iconURL = base64Image;
-
-                  let storageRef = this.storage.ref('icons/' + this.auth.uid);
-                  let task = storageRef.put(this.base64ToArrayBuffer(base64Image));
-
-                  task.on("state_changed", (snapshot) => {
-                        if (snapshot.bytesTransferred == snapshot.totalBytes) {
-                              console.log("COMPLETE file upload!");
-                        }
-                  });
-            })
-                  .catch((error: any) => {
-                        console.log(error);
-                  });
+                  targetHeight: 100
+            }).then(imagePath => {
+                  console.log(imagePath);
+                  this.iconURL = imagePath;
+            }).catch((error: any) => {
+                  console.log("GET PICTURE ERROR: " + error);
+            });
       }
 
       base64ToArrayBuffer(base64) {
@@ -66,5 +49,15 @@ export class AddAccount {
                   bytes[i] = binary_string.charCodeAt(i);
             }
             return bytes.buffer;
+      }
+
+      makeFileIntoBlob(imagePath: string) {
+            return fetch(imagePath).then((response) => {
+                  return response.blob();
+            }).then((blob) => {
+                  return blob;
+            }).catch((error) => {
+                  console.error("Error convertion to blob: " + error);
+            });
       }
 }
